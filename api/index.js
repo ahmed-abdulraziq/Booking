@@ -36,6 +36,11 @@ const corsOptions ={
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
+app.use("/", (req, res) => {
+    console.log('Cookies: ', req.cookies)
+    console.log('Signed Cookies: ', req.signedCookies)
+    return;
+})
 
 app.use("/api/auth", authRoute);
 app.use("/api/hotels", hotelsRoute);
@@ -55,6 +60,6 @@ app.use((err,req,res,next) => {
 })
 
 app.listen(2000, () => {
-    connect();
+    // connect();
     console.log("connected");
 });
